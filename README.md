@@ -65,7 +65,7 @@ git push
 
 ---
 
-### Consulte a disciplina em [wilcilene.github.io](https://wilcilene.github.io).
+### Consulte a disciplina em [wilcilene.github.io]([https://wilcilene.github.io)](https://wilcilene.github.io/estudos/disciplinas/programacaoi-eco/).
 
 ---
 
