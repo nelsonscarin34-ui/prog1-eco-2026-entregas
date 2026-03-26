@@ -9,10 +9,10 @@ Cada aula terá uma subpasta no formato `aula-NN/`. Dentro de cada aula, cada al
 ```
 exercicios/
 ├── aula-01/
-│   ├── joao-silva/
-│   └── maria-oliveira/
+│   ├── renan-ramlov/
+│   └── vinicius-alves/
 ├── aula-02/
-│   ├── joao-silva/
+│   ├── renan-ramlov/
 │   └── ...
 └── ...
 ```
@@ -20,8 +20,8 @@ exercicios/
 ## Como entregar
 
 1. Vá até a pasta da aula: `exercicios/aula-NN/`
-2. Crie uma pasta com seu nome (ex.: `joao-silva`)
-3. Coloque seus arquivos `.py` ou `.java` dentro
+2. Crie uma pasta com seu nome (ex.: `renan-ramlov`)
+3. Coloque seus arquivos `Java` ou 'C' nela
 4. Faça `git add`, `git commit` e `git push`
 
 > Consulte o guia completo na página da disciplina.
