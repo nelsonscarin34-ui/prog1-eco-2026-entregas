@@ -26,7 +26,7 @@ prog1-eco-2026-entregas/
 
 ## Como entregar exercícios
 
-1. **Clone** este repositório (ou faça fork, conforme instrução da professora).
+1. **Clone** este repositório.
 2. Dentro da pasta da aula correspondente, **crie uma pasta com o seu nome** (ex.: `exercicios/aula-01/joao-silva/`).
 3. Coloque seus arquivos de código dentro da sua pasta.
 4. Faça `git add`, `git commit` e `git push`.
@@ -40,7 +40,7 @@ prog1-eco-2026-entregas/
 
 - Cada equipe tem uma pasta em `projetos/equipes/equipe-XX/`.
 - Trabalhe **apenas na pasta da sua equipe**.
-- O código final integrado será reunido em `projetos/produto-final/` ao final do semestre.
+- O código final integrado será reunido em `projetos/produto-final/`.
 
 > **Padrão da mensagem de commit:**  
 > `[Equipe-XX] descricao do que foi feito`
@@ -65,9 +65,7 @@ git push
 
 ---
 
-## Dúvidas?
-
-Consulte o **Guia de Git e GitHub** disponível na página da disciplina em [wilcilene.github.io](https://wilcilene.github.io).
+### Consulte a disciplina em [wilcilene.github.io](https://wilcilene.github.io).
 
 ---
 
