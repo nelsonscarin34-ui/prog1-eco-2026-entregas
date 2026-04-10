@@ -27,6 +27,12 @@
 #include "models/lista04/EstudanteMedia.h"
 #include "models/lista04/Jogador.h"
 
+//lista 05
+#include "models/lista05/Turma.h"
+#include "models/lista05/ItemPedido.h"
+#include "models/lista05/EstudoDia.h"
+#include "models/lista05/LivroBiblioteca.h"
+
 class Main{
     public: static void execute(){
         //1° Lista de exercícios 
@@ -45,6 +51,11 @@ class Main{
         //execute12();
         //execute13();
         //execute14();
+
+        //execute15();
+        //execute16();
+        //execute17();
+        execute18();
     }; 
 
 
@@ -333,6 +344,188 @@ class Main{
                     indiceDaMaiorPontuacao = i;}
             }
             Printer::printMessageInformation("Jogador com a maior pontuação é: " + jogadores[indiceDaMaiorPontuacao].obterNome().str());
+        }
+    
+    
+        //5° Lista de atividades
+        static void execute15(){
+            Printer::printMessageIn("Quantidade de alunos: ");
+            int n = Reader::readInt();
+
+            Turma turma;
+
+            for (int i = 0; i < n; i++) {
+                Printer::printMessageIn("Nota do aluno " + ValorString::intParaString(i + 1).str() + ": ");
+                double nota = Reader::readDouble();
+                turma.adicionarNota(nota);
+            }
+
+            double media = turma.calcularMedia();
+            int abaixo6 = turma.contarAbaixo6();
+            int entre6e79 = turma.contarEntre6e79();
+            int acima8 = turma.contarAcima8();
+
+            Printer::printMessageInformation("Média: " + ValorString::doubleParaString(media).str());
+            Printer::printMessageInformation("Abaixo de 6: " + ValorString::intParaString(abaixo6).str());
+            Printer::printMessageInformation("Entre 6 e 7.9: " + ValorString::intParaString(entre6e79).str());
+            Printer::printMessageInformation("8 ou mais: " + ValorString::intParaString(acima8).str());
+        }
+
+        static void execute16(){
+            std::vector<ItemPedido> pedido;
+
+            while (true) {
+                Printer::printMessageInformation("\n===== MENU LANCHONETE =====");
+                Printer::printMessageInformation("1 - Adicionar item");
+                Printer::printMessageInformation("2 - Listar itens");
+                Printer::printMessageInformation("3 - Ver total");
+                Printer::printMessageInformation("0 - Sair");
+
+                Printer::printMessageIn("Escolha uma opção: ");
+                int opcao = Reader::readInt();
+
+                if (opcao == 0) {
+                    break;
+                }
+
+                if (opcao == 1) {
+                    Printer::printMessageIn("Nome do item: ");
+                    ValorString nome = Reader::readLine();
+
+                    Printer::printMessageIn("Quantidade: ");
+                    int qtd = Reader::readInt();
+
+                    Printer::printMessageIn("Preço unitário: ");
+                    double preco = Reader::readDouble();
+
+                    ItemPedido item(nome, qtd, preco);
+                    pedido.push_back(item);
+
+                    Printer::printMessageInformation("Item adicionado!");
+                }
+
+                else if (opcao == 2) {
+                    if (pedido.empty()) {
+                        Printer::printMessageInformation("Nenhum item no pedido.");
+                        continue;
+                    }
+
+                    Printer::printMessageInformation("=== ITENS DO PEDIDO ===");
+
+                    for (int i = 0; i < (int)pedido.size(); i++) {
+                        ItemPedido item = pedido[i];
+
+                        Printer::printMessageInformation(
+                            item.obterNome().str() +
+                            " | qtd: " +
+                            ValorString::intParaString(item.obterQuantidade()).str() +
+                            " | unit: " +
+                            ValorString::doubleParaString(item.obterPrecoUnitario()).str() +
+                            " | subtotal: " +
+                            ValorString::doubleParaString(item.calcularSubtotal()).str()
+                        );
+                    }
+                }
+
+                else if (opcao == 3) {
+                    double total = 0.0;
+
+                    for (ItemPedido item : pedido) {
+                        total += item.calcularSubtotal();
+                    }
+
+                    Printer::printMessageInformation(
+                        "TOTAL DO PEDIDO: R$ " +
+                        ValorString::doubleParaString(total).str()
+                    );
+                }
+
+                else {
+                    Printer::printMessageAlert("Opção inválida!");
+                }
+            }
+        }
+
+
+        static void execute17(){
+            EstudoDia semana[7] = {
+                EstudoDia(ValorString("Segunda"), 0),
+                EstudoDia(ValorString("Terca"), 0),
+                EstudoDia(ValorString("Quarta"), 0),
+                EstudoDia(ValorString("Quinta"), 0),
+                EstudoDia(ValorString("Sexta"), 0),
+                EstudoDia(ValorString("Sabado"), 0),
+                EstudoDia(ValorString("Domingo"), 0)
+            };
+
+            int total = 0;
+
+            for (int i = 0; i < 7; i++) {
+                Printer::printMessageIn(
+                    "Minutos de estudo na " + semana[i].obterDia().str() + ": "
+                );
+
+                int minutos = Reader::readInt();
+                semana[i].adicionarMinutos(minutos);
+
+                total += minutos;
+            }
+
+            int maior = 0;
+
+            for (int i = 1; i < 7; i++) {
+                if (semana[i].obterMinutos() > semana[maior].obterMinutos()) {
+                    maior = i;
+                }
+            }
+
+            Printer::printMessageInformation(
+                "Total de minutos estudados: " +
+                ValorString::intParaString(total).str()
+            );
+
+            Printer::printMessageInformation(
+                "Dia com maior estudo: " +
+                semana[maior].obterDia().str() +
+                " (" +
+                ValorString::intParaString(semana[maior].obterMinutos()).str() +
+                " min)"
+            );
+        }
+        static void execute18(){
+            std::vector<LivroBiblioteca> livros;
+
+            while (true) {
+                Printer::printMessageIn("Titulo (ou vazio para sair): ");
+                ValorString titulo = Reader::readLine();
+
+                if (titulo.str().empty()) {
+                    break;
+                }
+
+                Printer::printMessageIn("Autor: ");
+                ValorString autor = Reader::readLine();
+
+                Printer::printMessageIn("Paginas: ");
+                int paginas = Reader::readInt();
+
+                LivroBiblioteca livro(titulo, autor, paginas);
+                livros.push_back(livro);
+            }
+
+
+            bool encontrou = false;
+
+            for (LivroBiblioteca livro : livros) {
+                if (livro.temMaisDe300Paginas()) {
+                    Printer::printMessageInformation(livro.resumir().str());
+                    encontrou = true;
+                }
+            }
+
+            if (!encontrou) {
+                Printer::printMessageInformation("Nenhum livro com mais de 300 páginas.");
+            }
         }
     };
 
